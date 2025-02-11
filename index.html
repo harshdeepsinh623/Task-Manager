@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ddd);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 110vh;
+    }
+    
+    .container {
+      max-width: 900px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+    
+    .form-section, .task-section {
+      flex: 1;
+    }
+    
+    .task-section {
+      border-left: 2px solid #ddd;
+      padding-left: 20px;
+    }
+
+    .btn-custom {
+      transition: 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      transform: scale(1.05);
+    }
+
+    .task-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background: #f8f9fa;
+    }
+
+    .task-item span {
+      flex-grow: 1;
+      padding: 0 10px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .task-section {
+        border-left: none;
+        padding-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-section">
+      <h2 class="text-center text-dark"><i class="fas fa-tasks"></i> Task Manager</h2>
+      
+      <form id="taskForm" class="mb-4">
+        <div class="mb-3">
+          <label for="taskTitle" class="form-label">Task Title</label>
+          <input type="text" class="form-control" id="taskTitle" placeholder="Enter task title">
+        </div>
+        <div class="mb-3">
+          <label for="taskDescription" class="form-label">Description</label>
+          <textarea class="form-control" id="taskDescription" rows="2" placeholder="Enter task details"></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="taskDueDate" class="form-label">Due Date</label>
+            <input type="date" class="form-control" id="taskDueDate">
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="taskPriority" class="form-label">Priority</label>
+            <select class="form-select" id="taskPriority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100 btn-custom"><i class="fas fa-plus"></i> Add Task</button>
+      </form>
+    </div>
+
+    <div class="task-section">
+      <h4 class="text-dark"><i class="fas fa-list"></i> Your Tasks</h4>
+      <ul id="taskList" class="list-group"></ul>
+      
+      <div class="mt-3 d-flex justify-content-between">
+        <button class="btn btn-danger btn-custom" onclick="clearTasks()"><i class="fas fa-trash-alt"></i> Clear All</button>
+        <button class="btn btn-secondary btn-custom" onclick="sortTasks()"><i class="fas fa-sort-alpha-down"></i> Sort</button>
+        <button class="btn btn-warning btn-custom" onclick="prioritizeTask()"><i class="fas fa-star"></i> Prioritize</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
